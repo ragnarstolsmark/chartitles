@@ -1,0 +1,60 @@
+package com.example.gameofthroneshelper;
+
+import android.os.*;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Chronometer;
+
+public class Player extends Activity {
+	public boolean isPlaying = false;
+	public boolean firstStart = true;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_player);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.activity_player, menu);
+        return true;
+    }
+    /** Called when the user touches the button */
+    public void startTimer(View view) {
+        // Do something in response to button click
+    	if(!isPlaying){
+	    	Chronometer crm = null;
+	        crm = (Chronometer)findViewById(R.id.chronometer1);
+	        long seconds = getSecondsFromStart(crm);
+	        if(firstStart){
+	        	crm.setBase(android.os.SystemClock.elapsedRealtime());
+	        	firstStart=false;
+	        }
+	    	crm.start();
+	    	Button button = null;
+	        button = (Button)findViewById(R.id.playButton);
+	        button.setText("Pause");
+	    	isPlaying=true;
+    	}else{
+    		Chronometer crm = null;
+	        crm = (Chronometer)findViewById(R.id.chronometer1);
+	    	crm.stop();
+	    	Button button = null;
+	        button = (Button)findViewById(R.id.playButton);
+	        button.setText("Play");
+	    	isPlaying=false;
+    	}
+    	
+    }
+
+	private long getSecondsFromStart(Chronometer crm) {
+		String text = crm.getText().toString();
+		String[] minsec = text.split(":");
+		int min = Integer.parseInt(minsec[0]);
+		int sec = Integer.parseInt(minsec[1]);
+		return min*60+sec;
+	}
+}

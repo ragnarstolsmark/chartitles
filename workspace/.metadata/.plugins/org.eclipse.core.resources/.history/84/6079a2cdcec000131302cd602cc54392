@@ -1,0 +1,128 @@
+package com.example.gameofthroneshelper;
+
+import java.io.*;
+
+import android.net.Uri;
+import android.os.*;
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.res.AssetFileDescriptor;
+import android.view.Menu;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.Chronometer;
+import android.widget.Chronometer.OnChronometerTickListener;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.VideoView;
+
+public class Player extends Activity implements OnChronometerTickListener {
+	public boolean isPlaying = false;
+	public boolean firstStart = true;
+	public boolean animationStarted = false;
+	public boolean revAnimationStarted = false;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_player);
+		
+        Chronometer crm = null;
+        crm = (Chronometer)findViewById(R.id.chronometer1);
+        crm.setOnChronometerTickListener(this);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.activity_player, menu);
+        return true;
+    }
+    /** Called when the user touches the button */
+    public void startTimer(View view) {
+    	//parse textfil lag characters og lag timer med meir nøyaktig tickers...
+    			try {
+    				ImageView imgv = (ImageView)findViewById(R.id.imageView2);
+    				imgv.setImageResource(R.drawable.arya);
+    				imgv.setVisibility(View.VISIBLE);
+    				TextView tv2 = (TextView)findViewById(R.id.textView2);
+    				StringBuilder text = new StringBuilder();
+    		   
+    		        BufferedReader br = new BufferedReader(new InputStreamReader(getAssets().open("Gameofthrones0301.srt")));  
+    		        String line;   
+    		        while ((line = br.readLine()) != null) {
+    					tv2.setText(line);
+    		      }
+    			} catch (IOException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+        // Do something in response to button click
+    	if(!isPlaying){
+	    	Chronometer crm = null;
+	        crm = (Chronometer)findViewById(R.id.chronometer1);
+	        long seconds = getSecondsFromStart(crm);
+	        crm.setBase(android.os.SystemClock.elapsedRealtime()-(seconds*1000));
+	    	crm.start();
+	    	Button button = null;
+	        button = (Button)findViewById(R.id.playButton);
+	        button.setText("Pause");
+	    	isPlaying=true;
+    	}else{
+    		Chronometer crm = null;
+	        crm = (Chronometer)findViewById(R.id.chronometer1);
+	    	crm.stop();
+	    	Button button = null;
+	        button = (Button)findViewById(R.id.playButton);
+	        button.setText("Play");
+	    	isPlaying=false;
+    	}
+    	
+    }
+
+	private long getSecondsFromStart(Chronometer crm) {
+		String text = crm.getText().toString();
+		String[] minsec = text.split(":");
+		int min = Integer.parseInt(minsec[0]);
+		int sec = Integer.parseInt(minsec[1]);
+		return min*60+sec;
+	}
+
+	@Override
+	public void onChronometerTick(Chronometer chronometer) {
+		long seconds = getSecondsFromStart(chronometer);
+		if(seconds==10){
+			ImageView imgv = (ImageView)findViewById(R.id.imageView1);
+			imgv.setImageResource(R.drawable.tyrion);
+			imgv.setVisibility(View.VISIBLE);
+			if(!animationStarted){
+				Animation topAnimation = AnimationUtils.loadAnimation(this, R.anim.topanimation);
+				imgv.startAnimation(topAnimation);
+				animationStarted=true;
+			}
+
+			TextView tv1 = (TextView)findViewById(R.id.textView1);
+			tv1.setText("Tyrion:");
+		}
+		else if(seconds==15){
+			if(!revAnimationStarted){
+				Animation revTop = AnimationUtils.loadAnimation(this, R.anim.reversetopanimation);
+				ImageView imgv = (ImageView)findViewById(R.id.imageView1);
+				imgv.startAnimation(revTop);
+				
+				revAnimationStarted=true;
+			}
+		}
+
+		if(getSecondsFromStart(chronometer)>15){
+			ImageView imgv = (ImageView)findViewById(R.id.imageView2);
+			imgv.setImageResource(R.drawable.arya);
+			imgv.setVisibility(View.VISIBLE);
+			TextView tv2 = (TextView)findViewById(R.id.textView2);
+			tv2.setText("Arya:");
+		}
+	}
+}

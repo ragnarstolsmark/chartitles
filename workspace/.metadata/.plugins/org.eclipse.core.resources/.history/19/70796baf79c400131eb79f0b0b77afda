@@ -1,0 +1,6 @@
+package com.example.gameofthroneshelper;
+
+public class PlayableEvent {
+	public Character character;
+	public int secondsFromStart;
+}

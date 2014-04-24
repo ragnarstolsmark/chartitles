@@ -1,0 +1,49 @@
+package com.example.gameofthroneshelper;
+
+import android.os.*;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Chronometer;
+
+public class Player extends Activity {
+	public boolean isPlaying = false;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_player);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.activity_player, menu);
+        return true;
+    }
+    /** Called when the user touches the button */
+    public void startTimer(View view) {
+        // Do something in response to button click
+    	if(!isPlaying){
+	    	Chronometer crm = null;
+	        crm = (Chronometer)findViewById(R.id.chronometer1);
+	        lastPause = android.os.SystemClock.elapsedRealtime();
+	        crm.setBase(lastPause);
+	    	crm.start();
+	    	Button button = null;
+	        button = (Button)findViewById(R.id.playButton);
+	        button.setText("Pause");
+	    	isPlaying=true;
+    	}else{
+    		Chronometer crm = null;
+	        crm = (Chronometer)findViewById(R.id.chronometer1);
+	        crm.setBase(android.os.SystemClock.elapsedRealtime());
+	    	crm.start();
+	    	Button button = null;
+	        button = (Button)findViewById(R.id.playButton);
+	        button.setText("Pause");
+	    	isPlaying=true;
+    	}
+    	
+    }
+}

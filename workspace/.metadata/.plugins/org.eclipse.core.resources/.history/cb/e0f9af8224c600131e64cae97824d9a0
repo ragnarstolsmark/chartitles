@@ -1,0 +1,13 @@
+package com.example.gameofthroneshelper;
+
+import java.util.*;
+
+public class Episode {
+	public List<PlayableEvent> events;
+	public Episode(){
+		events = new LinkedList<PlayableEvent>();
+	}
+	public void AddEvent(PlayableEvent event){
+		events.add(event);
+	}
+}

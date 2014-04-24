@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+C:\Users\R\Dropbox\SeriesCharacterHelper\workspace\.metadata\.plugins\org.eclipse.jdt.core
+1340178129.index
+3028875295.index
+633194433.index

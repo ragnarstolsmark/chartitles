@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;com.example.gameofthroneshelper.Character.image&apos; in &apos;com.example.gameofthroneshelper.Character&apos;&#x0D;&#x0A;- Original project: &apos;GameOfThronesHelper&apos;&#x0D;&#x0A;- Original element: &apos;com.example.gameofthroneshelper.Character.image&apos;&#x0D;&#x0A;- Getter method name: &apos;getImage&apos;&#x0D;&#x0A;- Setter method name: &apos;setImage&apos;&#x0D;&#x0A;- Field visibility: &apos;public&apos;&#x0D;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;image&apos;" flags="589830" getter="getImage" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;com.example.gameofthroneshelper{Character.java[Character^image" insertion="2" setter="setImage" stamp="1397548401444" version="1.0" visibility="1"/>
+</session>

@@ -1,0 +1,25 @@
+package com.example.gameofthroneshelper;
+
+public class Character {
+	private String[] names;
+	private String fullName;
+	public Character(String name){
+		names = name.split(" ");
+		fullName = name;
+	}
+	public String getFullName(){
+		return fullName;
+	}
+	public String getFirstName(){
+		return names[0];
+	}
+	//Note must handle persons with the same last name in the same series
+	public boolean LineContainsCharacterName(String[] line){
+		for(int i=0;i<line.length;i++){
+			if(line[i].equalsIgnoreCase(getFirstName()){
+				return true;
+			}
+		}
+		return false;
+	}
+}

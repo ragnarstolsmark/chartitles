@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;GameOfThronesHelper/assets/Game of Thrones 3x01 - Valar Dohaeris.en.srt&apos; to &apos;Gameofthrones0301.srt&apos;" description="Rename resource &apos;Game of Thrones 3x01 - Valar Dohaeris.en.srt&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="assets/Game of Thrones 3x01 - Valar Dohaeris.en.srt" name="Gameofthrones0301.srt" stamp="1397147049481" updateReferences="true"/>
+</session>

@@ -1,0 +1,7 @@
+package com.example.gameofthroneshelper;
+
+import java.util.List;
+
+public class Episode {
+	public List<PlayableEvent> events;
+}

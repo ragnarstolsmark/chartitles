@@ -1,0 +1,8 @@
+package com.example.gameofthroneshelper;
+
+public class Character {
+	public String[] names;
+	public Character(String name){
+		names = name.split(" ");
+	}
+}

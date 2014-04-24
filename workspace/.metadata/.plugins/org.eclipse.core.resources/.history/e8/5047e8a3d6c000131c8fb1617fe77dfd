@@ -1,0 +1,42 @@
+package com.example.gameofthroneshelper;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import android.app.Activity;
+import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class SubtitleParser extends AsyncTask<String,String, Void>{
+	
+	private Activity _activity;
+	public SubtitleParser(Activity activity){
+		_activity = activity;
+	}
+	@Override
+	protected Void doInBackground(String... filename) {
+		//parse textfil lag characters og lag timer med meir nøyaktig tickers...
+		try {
+			StringBuilder text = new StringBuilder();  
+			BufferedReader br = new BufferedReader(new InputStreamReader(_activity.getAssets().open(filename[0])));
+	        String line;   
+	        while ((line = br.readLine()) != null) {
+	        		publishProgress(line);
+	        }
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	 protected void onProgressUpdate(String... lines) {
+		TextView tv2 = (TextView)_activity.findViewById(R.id.textView2);
+		tv2.setText(lines[0]);
+    }
+}

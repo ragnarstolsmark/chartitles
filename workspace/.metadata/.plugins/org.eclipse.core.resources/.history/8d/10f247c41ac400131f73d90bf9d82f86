@@ -1,0 +1,16 @@
+package com.example.gameofthroneshelper;
+
+public class Character {
+	public String[] names;
+	public Character(String name){
+		names = name.split(" ");
+	}
+	public String getFullName(){
+		String ret = "";
+		for(int i=0;i<names.length;i++){
+			ret += names[i];
+			ret += " ";
+		}
+		return ret;
+	}
+}

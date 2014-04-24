@@ -1,0 +1,17 @@
+package com.example.gameofthroneshelper;
+
+import android.os.AsyncTask;
+
+public class SubtitleParser extends AsyncTask<String,Void, Void>{
+
+	@Override
+	protected Object doInBackground(String... arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	 protected void onProgressUpdate(Void... values) {
+		
+    }
+}
